@@ -1,0 +1,10 @@
+main.py
+plan.txt
+users/
+venv
+.idea
+
+shop/shop/__pycache__/
+
+shop/catalog/migrations/__pycache__/
+shop/catalog/__pycache__/
