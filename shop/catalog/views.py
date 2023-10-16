@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 
 
@@ -11,10 +10,8 @@ def categories(request):
 
 
 def list_by_products(request):
-    return HttpResponse("Страница где показаны товары из определенной категории")
+    return render(request, "catalog/list_by_products.html")
 
 
 def product(request, num_product):
-    return HttpResponse(
-        f"<h1>Страница с карточкой товара (разделение по коду товара?) </h1><br> Товар под номером {num_product}"
-    )
+    return render(request, "catalog/product.html")
