@@ -3,7 +3,10 @@ from django.db import models
 
 class Order(models.Model):
     id_order = models.IntegerField(verbose_name="Order id")
+    opened_at = models.DateTimeField(auto_now_add=True, verbose_name="Opened at")
+    closed_at = models.DateTimeField(verbose_name="Closed at", blank=True, null=True)
     is_closed = models.BooleanField(default=False, verbose_name="Is closed")
+    is_processed = models.BooleanField(default=False, verbose_name="Is processed")
     name_user = models.CharField(max_length=100, verbose_name="Name", null=True)
     phone_user = models.CharField(max_length=100, verbose_name="Phone", null=True)
     address = models.CharField(max_length=100, verbose_name="Address", null=True)
@@ -17,7 +20,7 @@ class Order(models.Model):
 
 
 class OrderPosition(models.Model):
-    order = models.ForeignKey("cart.Orders", on_delete=models.DO_NOTHING)
+    order = models.ForeignKey(Order, on_delete=models.DO_NOTHING)
     product = models.ForeignKey("catalog.Product", on_delete=models.DO_NOTHING)
     count = models.PositiveIntegerField(default=0)
 
