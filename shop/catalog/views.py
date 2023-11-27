@@ -1,17 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
+from catalog.models import ProductCatalog, Product
 
 
 def index(request):
-    return render(request, "catalog/index.html")
+
+    catalogs = ProductCatalog.objects.all()
+    products = Product.objects.all()
+    return render(request, "catalog/index.html", {'catalogs': catalogs, 'products': products})
 
 
 def categories(request):
-    return render(request, "catalog/categories.html")
+    catalogs = ProductCatalog.objects.all()
+    return render(request, "catalog/categories.html", {'catalogs': catalogs})
 
 
-def list_by_products(request):
-    return render(request, "catalog/list_by_products.html")
+def list_by_products(request, categories_id):
+    catalogs = get_object_or_404(ProductCatalog, id=categories_id)
+    products = Product.objects.filter(category=catalogs.id)
+
+    return render(request, "catalog/list_by_products.html", {'products': products})
 
 
 def product(request, num_product):
-    return render(request, "catalog/product.html")
+    products = Product.objects.get(id=num_product)
+    return render(request, "catalog/product.html", {'products': products})
