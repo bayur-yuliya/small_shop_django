@@ -5,7 +5,9 @@
 {%  endblock  %}
 
 {%  block content  %}
-    <h1>Главная страница</h1>
+<a href="{% url 'register' %}">Регистрация</a> |
+<a href="{% url 'login' %}">Войти</a><br>
+<h1>Главная страница</h1>
 
 <h3>
 {%  for el in catalogs  %}
@@ -13,12 +15,13 @@
 {%  endfor  %}
 </h3>
 <hr>
-<form action="">
-{%  for el in products  %}
-    <a href="{%  url 'one_product' el.id %}">{{  el.name  }}</a><br>
-    {{  el.price  }}<br>
-    <input type="submit" value="Заказать">
-    <hr>
-{%  endfor  %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {%  for el in products  %}
+        <a href="{%  url 'one_product' el.id %}">{{  el.name  }}</a><br>
+        {{  el.price  }}<br>
+        <input type="submit" value="Заказать">
+        <hr>
+    {%  endfor  %}
 </form>
 {%  endblock  %}
