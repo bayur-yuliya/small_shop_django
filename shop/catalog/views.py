@@ -39,4 +39,3 @@ def product(request, num_product):
     # if request.method == 'GET':
     products = Product.objects.get(id=num_product)
     return render(request, "catalog/product.html", {"products": products})
-
