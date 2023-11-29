@@ -1,10 +1,19 @@
 {%  extends "catalog/base.html"  %}
 
-{%  block title  %}
-Главная страница
-{%  endblock  %}
+{%  block title  %}Главная страница{%  endblock  %}
 
 {%  block content  %}
+
+<style>
+.product-element {
+    margin: 10px 10px 10px 10px;
+    border: 1px dotted #939;
+    padding: 20px;
+<!--    background: #617DC7;-->
+}
+
+</style>
+
 <a href="{% url 'register' %}">Регистрация</a> |
 <a href="{% url 'login' %}">Войти</a><br>
 <h1>Главная страница</h1>
@@ -13,15 +22,18 @@
 {%  for el in catalogs  %}
     {{  el  }}
 {%  endfor  %}
+    <a href="{%  url 'categories'  %}">Все категории </a>
 </h3>
 <hr>
 <form action="" method="POST">
     {% csrf_token %}
     {%  for el in products  %}
+    <div class="product-element">
         <a href="{%  url 'one_product' el.id %}">{{  el.name  }}</a><br>
         {{  el.price  }}<br>
         <input type="submit" value="Заказать">
-        <hr>
+    </div>
+    <hr>
     {%  endfor  %}
 </form>
 {%  endblock  %}

@@ -8,11 +8,11 @@
 {%  block content  %}
 <h1>Страница где показаны товары из определенной категории</h1>
 <hr>
-<form action="">
+<form action="" method="POST">
 {%  for el in products  %}
     <a href="{%  url 'one_product' el.id %}">{{  el.name  }}</a><br>
     {{  el.price  }}<br>
-    <input type="submit" value="Заказать">
+    <input type="submit" value="Добавить в корзину">
     <hr>
 {%  endfor  %}
 </form>

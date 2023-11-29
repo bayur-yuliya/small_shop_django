@@ -5,10 +5,29 @@
 {%  endblock  %}
 
 {%  block content  %}
-{{  products.name  }} - {{  products.price  }}<br>
-{{  products.category  }}<br>
+<style>
+.product-info {
+    text-align: right;
+    margin-right: 20%;
+}
+</style>
+<a href="{%  url 'index'  %}">На главную страницу</a>
+
+<div class="product-info">
+    <h2>{{  products.name  }}</h2><br>
+    {{  products.category  }}<br>
+    <h3>{{  products.price  }}</h3><br>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Добавить в корзину">
+</form>
+</div>
 <hr>
+Описание
 {%  if products.description  %}
     {{  products.description  }}
 {%  endif  %}
+<hr>
+
 {%  endblock  %}
