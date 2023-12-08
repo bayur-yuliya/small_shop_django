@@ -12,10 +12,10 @@
 }
 </style>
 <a href="{%  url 'index'  %}">На главную страницу</a>
+<a href="{%  url 'products' products.category.id %}">{{  products.category  }}</a>
 
 <div class="product-info">
     <h2>{{  products.name  }}</h2><br>
-    {{  products.category  }}<br>
     <h3>{{  products.price  }}</h3><br>
 
 <form action="" method="POST">
