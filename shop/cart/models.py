@@ -7,7 +7,6 @@ class Order(models.Model):
     is_closed = models.BooleanField(default=False, verbose_name="Is closed")
     is_processed = models.BooleanField(default=True, verbose_name="Is processed")
 
-
     class Meta:
         verbose_name = "Order"
         verbose_name_plural = "Orders"

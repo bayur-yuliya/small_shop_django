@@ -6,5 +6,4 @@ def create_order(request, num_order):
 
 
 def cart(request):
-
     return render(request, "cart/cart.html")

@@ -33,18 +33,25 @@ def list_by_products(request, categories_id):
     catalog = get_object_or_404(ProductCatalog, id=categories_id)
     products = Product.objects.filter(category=catalog.id)
 
-    return render(request, "catalog/list_by_products.html", {"products": products, 'catalog': catalog})
+    return render(
+        request,
+        "catalog/list_by_products.html",
+        {"products": products, "catalog": catalog},
+    )
 
 
 def product(request, num_product):
     products = get_object_or_404(Product, id=num_product)
     if request.method == "POST":
         order, created = Order.objects.get_or_create(id=1)
-        order_position, created = OrderPosition.objects.get_or_create(order=order, product=products)
+        order_position, created = OrderPosition.objects.get_or_create(
+            order=order, product=products
+        )
         if created is True:
             order_position.count = 1
         elif created is False and order.is_processed:
-            OrderPosition.objects.filter(order=order, product=products).update(count=order_position.count+1)
-
+            OrderPosition.objects.filter(order=order, product=products).update(
+                count=order_position.count + 1
+            )
 
     return render(request, "catalog/product.html", {"products": products})
