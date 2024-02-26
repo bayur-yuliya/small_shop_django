@@ -1,8 +1,13 @@
-{%  extends "html/catalog/base.html"  %}
+{%  extends "catalog/base.html"  %}
 
 {%  block title  %} Категории {%  endblock  %}
 
 
 {%  block content  %}
-    <h1>Страница с категориями товаров</h1>
+<h1>Страница с категориями товаров</h1>
+
+{%  for el in catalogs  %}
+    <h3><a href="{%  url 'products' el.id %}">{{  el  }}</a></h3>
+{%  endfor  %}
+
 {%  endblock  %}
