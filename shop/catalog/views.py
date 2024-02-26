@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
+from django.shortcuts import render, get_object_or_404
 
 from cart.models import Order, OrderPosition
-from catalog.forms import RegisterUserForm, CreateProductForm
+from catalog.forms import RegisterUserForm
 from catalog.models import ProductCatalog, Product
 
 
@@ -56,14 +55,3 @@ def product(request, num_product):
             )
 
     return render(request, "catalog/product.html", {"products": products})
-
-
-def create_product(request):
-    if request.method == "GET":
-        form = CreateProductForm()
-        return render(request, "catalog/create_product.html", {"form": form})
-
-    form = CreateProductForm(request.POST)
-    if form.is_valid():
-        form.save()
-    return redirect(reverse("index"))

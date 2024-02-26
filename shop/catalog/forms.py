@@ -2,8 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from catalog.models import Product, ProductCatalog
-
 
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(label="Username", required=True)
@@ -21,16 +19,3 @@ class RegisterUserForm(UserCreationForm):
         if commit:
             user.save()
         return user
-
-
-class CreateProductForm(forms.ModelForm):
-    category = forms.ModelChoiceField(queryset=ProductCatalog.objects.all(), initial=0)
-
-    class Meta:
-        model = Product
-        fields = (
-            "name",
-            "category",
-            "description",
-            "price",
-        )

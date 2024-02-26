@@ -31,8 +31,6 @@
 
 # PHPUnit
 /app/phpunit.xml
-main.py
-plan.txt
 /phpunit.xml
 
 # Build data
